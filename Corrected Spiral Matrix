@@ -1,0 +1,60 @@
+using System;
+ 
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("enter n");
+            int n = int.Parse(Console.ReadLine());
+            int[,] spiral = new int[n, n];
+            int c =1;
+            int rows = 0;
+            int cols = 0;
+            int t = 0;
+ 
+            while (c <= n*n)
+            {
+                while ((rows <= n - 1 - t))  //right
+                {
+                    spiral[cols, rows] = c;
+                    c++;
+                    rows++;
+                }
+                rows--;
+                cols++;
+                while (cols <= n - 1 - t)  //down
+                {
+                    spiral[cols, rows] = c;
+                    c++;
+                    cols++;
+                }
+                cols--;
+                rows--;
+                while ((rows >= t))  //left
+                {
+                    spiral[cols, rows] = c;
+                    c++;
+                    rows--;
+                }
+                rows++;
+                cols--;
+                while (cols >= 1 + t)  //up
+                {
+                    spiral[cols, rows] = c;
+                    c++;
+                    cols--;
+                }
+                cols++;
+                rows++;
+            t++;
+            }
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    Console.Write("{0}\t",spiral[i, j]);
+                }
+                Console.WriteLine();
+            }
+        }
+    }
